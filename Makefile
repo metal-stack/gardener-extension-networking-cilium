@@ -23,6 +23,12 @@ LD_FLAGS                    := "-w -X github.com/gardener/$(EXTENSION_PREFIX)-$(
 LEADER_ELECTION             := false
 IGNORE_OPERATION_ANNOTATION := true
 
+ifeq ($(CI),true)
+  DOCKER_TTY_ARG=""
+else
+  DOCKER_TTY_ARG=t
+endif
+
 #########################################
 # Rules for local development scenarios #
 #########################################
@@ -92,6 +98,14 @@ check:
 .PHONY: generate
 generate:
 	@$(REPO_ROOT)/vendor/github.com/gardener/gardener/hack/generate.sh ./charts/... ./cmd/... ./pkg/... ./test/...
+
+.PHONY: generate-in-docker
+generate-in-docker:
+	echo $(shell git describe --abbrev=0 --tags) > VERSION
+	docker run --rm -i$(DOCKER_TTY_ARG) -v $(PWD):/go/src/github.com/gardener/gardener-extension-networking-cilium golang:1.18 \
+		sh -c "cd /go/src/github.com/gardener/gardener-extension-networking-cilium \
+				&& make install-requirements generate \
+				&& chown -R $(shell id -u):$(shell id -g) ."
 
 .PHONY: format
 format:

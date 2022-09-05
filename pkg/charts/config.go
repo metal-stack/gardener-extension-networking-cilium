@@ -35,6 +35,8 @@ type globalConfig struct {
 	LocalRedirectPolicy    localRedirectPolicy                     `json:"localRedirectPolicy"`
 	NodeLocalDNS           nodeLocalDNS                            `json:"nodeLocalDNS"`
 	EgressGateway          egressGateway                           `json:"egressGateway"`
+	IPv4NativeRoutingCIDR  string                                  `json:"ipv4NativeRoutingCIDR"`
+	MTU                    int                                     `json:"mtu"`
 }
 
 // etcd related configuration for cilium

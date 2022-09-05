@@ -165,6 +165,30 @@ EgressGateway
 <p>EgressGateway enablement for cilium</p>
 </td>
 </tr>
+<tr>
+<td>
+<code>mtu</code></br>
+<em>
+int
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>MTU overwrites the auto-detected MTU of the underlying network</p>
+</td>
+</tr>
+<tr>
+<td>
+<code>ipv4NativeRoutingCIDREnabled</code></br>
+<em>
+bool
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>IPv4NativeRoutingCIDRMode will set the ipv4 native routing cidr from the network configs node&rsquo;s cidr if enabled.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3 id="cilium.networking.extensions.gardener.cloud/v1alpha1.BPFSocketLBHostnsOnly">BPFSocketLBHostnsOnly

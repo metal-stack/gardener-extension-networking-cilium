@@ -145,4 +145,8 @@ type NetworkConfig struct {
 	BPFSocketLBHostnsOnly *BPFSocketLBHostnsOnly
 	// EgressGateway flag to be enabled or not
 	EgressGateway *EgressGateway
+	// MTU overwrites the auto-detected MTU of the underlying network
+	MTU *int
+	// IPv4NativeRoutingCIDRMode will set the ipv4 native routing cidr from the network configs node's cidr if enabled.
+	IPv4NativeRoutingCIDREnabled *bool
 }

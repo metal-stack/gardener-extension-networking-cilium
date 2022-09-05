@@ -146,4 +146,10 @@ type NetworkConfig struct {
 	// EgressGateway enablement for cilium
 	// +optional
 	EgressGateway *EgressGateway `json:"egressGateway,omitempty"`
+	// MTU overwrites the auto-detected MTU of the underlying network
+	// +optional
+	MTU *int `json:"mtu,omitempty"`
+	// IPv4NativeRoutingCIDRMode will set the ipv4 native routing cidr from the network configs node's cidr if enabled.
+	// +optional
+	IPv4NativeRoutingCIDREnabled *bool `json:"ipv4NativeRoutingCIDREnabled,omitempty"`
 }
