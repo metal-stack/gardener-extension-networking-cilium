@@ -420,7 +420,7 @@ data:
 {{- end}}
 
 {{- if .Values.global.mtu }}
-  mtu: {{ .Values.global.mtu }}
+  mtu: {{ .Values.global.mtu | quote }}
 {{- end}}
 
 {{- if .Values.global.devices }}
