@@ -414,9 +414,15 @@ data:
 {{- if .Values.global.nativeRoutingCIDR }}
   native-routing-cidr: {{ .Values.global.nativeRoutingCIDR }}
 {{- end }}
-
+{{- if .Values.global.ipv4NativeRoutingCIDR }}
+  ipv4-native-routing-cidr: {{ .Values.global.ipv4NativeRoutingCIDR }}
+{{- end }}
 {{- if .Values.global.hostFirewall }}
   enable-host-firewall: {{ .Values.global.hostFirewall | quote }}
+{{- end}}
+
+{{- if .Values.global.mtu }}
+  mtu: {{ .Values.global.mtu | quote }}
 {{- end}}
 
 {{- if .Values.global.devices }}

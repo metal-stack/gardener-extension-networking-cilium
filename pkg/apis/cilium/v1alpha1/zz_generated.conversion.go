@@ -221,6 +221,8 @@ func autoConvert_v1alpha1_NetworkConfig_To_cilium_NetworkConfig(in *NetworkConfi
 	out.IPv6 = (*cilium.IPv6)(unsafe.Pointer(in.IPv6))
 	out.BPFSocketLBHostnsOnly = (*cilium.BPFSocketLBHostnsOnly)(unsafe.Pointer(in.BPFSocketLBHostnsOnly))
 	out.EgressGateway = (*cilium.EgressGateway)(unsafe.Pointer(in.EgressGateway))
+	out.MTU = (*int)(unsafe.Pointer(in.MTU))
+	out.IPv4NativeRoutingCIDREnabled = (*bool)(unsafe.Pointer(in.IPv4NativeRoutingCIDREnabled))
 	return nil
 }
 
@@ -239,6 +241,8 @@ func autoConvert_cilium_NetworkConfig_To_v1alpha1_NetworkConfig(in *cilium.Netwo
 	out.IPv6 = (*IPv6)(unsafe.Pointer(in.IPv6))
 	out.BPFSocketLBHostnsOnly = (*BPFSocketLBHostnsOnly)(unsafe.Pointer(in.BPFSocketLBHostnsOnly))
 	out.EgressGateway = (*EgressGateway)(unsafe.Pointer(in.EgressGateway))
+	out.MTU = (*int)(unsafe.Pointer(in.MTU))
+	out.IPv4NativeRoutingCIDREnabled = (*bool)(unsafe.Pointer(in.IPv4NativeRoutingCIDREnabled))
 	return nil
 }
 

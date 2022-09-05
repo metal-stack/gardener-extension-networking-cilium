@@ -24,7 +24,7 @@ requirements:
 
 # global groups all configuration options that have effect on all sub-charts
 global:
-  egressGateway: 
+  egressGateway:
     enabled: false
 
   nodeLocalDNS:
@@ -33,6 +33,9 @@ global:
   podCIDR: ""
   # pullPolicy is the container image pull policy
   pullPolicy: IfNotPresent
+
+  ipv4NativeRoutingCIDR: ""
+  mtu:
 
   hubble:
     socketPath: "/var/run/cilium/hubble.sock"
@@ -445,7 +448,7 @@ global:
     # Regular expression matching compatible Istio sidecar istio-proxy
     # container image names
     sidecarImageRegex: "cilium/istio_proxy"
-  
+
   # Enables L7 proxy for L7 policy enforcement and visibility
   l7proxy:
     enabled: true

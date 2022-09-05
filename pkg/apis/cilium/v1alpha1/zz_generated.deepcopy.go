@@ -164,6 +164,16 @@ func (in *NetworkConfig) DeepCopyInto(out *NetworkConfig) {
 		*out = new(EgressGateway)
 		**out = **in
 	}
+	if in.MTU != nil {
+		in, out := &in.MTU, &out.MTU
+		*out = new(int)
+		**out = **in
+	}
+	if in.IPv4NativeRoutingCIDREnabled != nil {
+		in, out := &in.IPv4NativeRoutingCIDREnabled, &out.IPv4NativeRoutingCIDREnabled
+		*out = new(bool)
+		**out = **in
+	}
 	return
 }
 

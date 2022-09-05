@@ -99,6 +99,8 @@ var defaultGlobalConfig = globalConfig{
 	NodeLocalDNS: nodeLocalDNS{
 		Enabled: false,
 	},
+	MTU:                   0,
+	IPv4NativeRoutingCIDR: "",
 }
 
 func newGlobalConfig() globalConfig {
@@ -113,7 +115,7 @@ func newRequirementsConfig() requirementsConfig {
 func ComputeCiliumChartValues(config *ciliumv1alpha1.NetworkConfig, network *extensionsv1alpha1.Network, cluster *extensionscontroller.Cluster) (*ciliumConfig, error) {
 	requirementsConfig, globalConfig, err := generateChartValues(config, network, cluster)
 	if err != nil {
-		return nil, fmt.Errorf("error when generating config values %v", err)
+		return nil, fmt.Errorf("error when generating config values %w", err)
 	}
 
 	return &ciliumConfig{
@@ -210,6 +212,19 @@ func generateChartValues(config *ciliumv1alpha1.NetworkConfig, network *extensio
 	// check if egress gateway is enabled
 	if config.EgressGateway != nil {
 		globalConfig.EgressGateway.Enabled = config.EgressGateway.Enabled
+	}
+
+	// check if mtu is set
+	if config.MTU != nil {
+		globalConfig.MTU = *config.MTU
+	}
+
+	// check if ipv4 native routing cidr is set
+	if config.IPv4NativeRoutingCIDREnabled != nil && *config.IPv4NativeRoutingCIDREnabled {
+		if cluster.Shoot.Spec.Networking.Nodes == nil {
+			return requirementsConfig, globalConfig, fmt.Errorf("nodes cidr required for setting ipv4 native routing cidr was not yet set")
+		}
+		globalConfig.IPv4NativeRoutingCIDR = *cluster.Shoot.Spec.Networking.Nodes
 	}
 
 	return requirementsConfig, globalConfig, nil
