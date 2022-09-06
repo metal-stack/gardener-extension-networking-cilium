@@ -342,6 +342,12 @@ global:
     # mode is the mode of NodePort feature
     mode: "hybrid"
 
+    # bindProtection enables node port bind protection
+    bindProtection: true
+
+    # autoProtectPortRange enables to auto protect node port range
+    autoProtectPortRange: true
+
   # externalIPs is the configuration for ExternalIPs service handling
   externalIPs:
     # enabled enables ExternalIPs functionality
