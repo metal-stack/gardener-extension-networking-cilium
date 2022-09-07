@@ -37,6 +37,7 @@ type globalConfig struct {
 	EgressGateway          egressGateway                           `json:"egressGateway"`
 	IPv4NativeRoutingCIDR  string                                  `json:"ipv4NativeRoutingCIDR"`
 	MTU                    int                                     `json:"mtu"`
+	Devices                []string                                `json:"devices"`
 }
 
 // etcd related configuration for cilium

@@ -147,6 +147,8 @@ type NetworkConfig struct {
 	EgressGateway *EgressGateway
 	// MTU overwrites the auto-detected MTU of the underlying network
 	MTU *int
+	// Devices is the list of devices facing cluster/external network
+	Devices []string
 	// IPv4NativeRoutingCIDRMode will set the ipv4 native routing cidr from the network configs node's cidr if enabled.
 	IPv4NativeRoutingCIDREnabled *bool
 }

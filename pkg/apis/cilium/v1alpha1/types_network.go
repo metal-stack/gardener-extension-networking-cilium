@@ -149,6 +149,9 @@ type NetworkConfig struct {
 	// MTU overwrites the auto-detected MTU of the underlying network
 	// +optional
 	MTU *int `json:"mtu,omitempty"`
+	// Devices is the list of devices facing cluster/external network
+	// +optional
+	Devices []string `json:"devices,omitempty"`
 	// IPv4NativeRoutingCIDRMode will set the ipv4 native routing cidr from the network configs node's cidr if enabled.
 	// +optional
 	IPv4NativeRoutingCIDREnabled *bool `json:"ipv4NativeRoutingCIDREnabled,omitempty"`

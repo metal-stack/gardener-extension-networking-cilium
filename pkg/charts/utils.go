@@ -99,6 +99,7 @@ var defaultGlobalConfig = globalConfig{
 		Enabled: false,
 	},
 	MTU:                   0,
+	Devices:               nil,
 	IPv4NativeRoutingCIDR: "",
 }
 
@@ -202,6 +203,11 @@ func generateChartValues(config *ciliumv1alpha1.NetworkConfig, network *extensio
 	// check if mtu is set
 	if config.MTU != nil {
 		globalConfig.MTU = *config.MTU
+	}
+
+	// check if devices are set
+	if len(config.Devices) > 0 {
+		globalConfig.Devices = config.Devices
 	}
 
 	// check if ipv4 native routing cidr is set

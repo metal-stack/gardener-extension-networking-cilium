@@ -179,6 +179,18 @@ int
 </tr>
 <tr>
 <td>
+<code>devices</code></br>
+<em>
+[]string
+</em>
+</td>
+<td>
+<em>(Optional)</em>
+<p>Devices is the list of devices facing cluster/external network</p>
+</td>
+</tr>
+<tr>
+<td>
 <code>ipv4NativeRoutingCIDREnabled</code></br>
 <em>
 bool
