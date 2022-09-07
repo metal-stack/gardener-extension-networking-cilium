@@ -174,6 +174,11 @@ func (in *NetworkConfig) DeepCopyInto(out *NetworkConfig) {
 		*out = make([]string, len(*in))
 		copy(*out, *in)
 	}
+	if in.LoadBalancingMode != nil {
+		in, out := &in.LoadBalancingMode, &out.LoadBalancingMode
+		*out = new(LoadBalancingMode)
+		**out = **in
+	}
 	if in.IPv4NativeRoutingCIDREnabled != nil {
 		in, out := &in.IPv4NativeRoutingCIDREnabled, &out.IPv4NativeRoutingCIDREnabled
 		*out = new(bool)

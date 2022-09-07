@@ -17,6 +17,7 @@ package charts
 import (
 	"fmt"
 
+	"github.com/gardener/gardener-extension-networking-cilium/pkg/apis/cilium/v1alpha1"
 	ciliumv1alpha1 "github.com/gardener/gardener-extension-networking-cilium/pkg/apis/cilium/v1alpha1"
 	"github.com/gardener/gardener-extension-networking-cilium/pkg/cilium"
 	"github.com/gardener/gardener-extension-networking-cilium/pkg/imagevector"
@@ -101,6 +102,9 @@ var defaultGlobalConfig = globalConfig{
 	MTU:                   0,
 	Devices:               nil,
 	IPv4NativeRoutingCIDR: "",
+	BPF: bpf{
+		LoadBalancingMode: v1alpha1.SNAT,
+	},
 }
 
 func newGlobalConfig() globalConfig {
@@ -208,6 +212,13 @@ func generateChartValues(config *ciliumv1alpha1.NetworkConfig, network *extensio
 	// check if devices are set
 	if len(config.Devices) > 0 {
 		globalConfig.Devices = config.Devices
+	}
+
+	// check if load balancing mode is set
+	if config.LoadBalancingMode != nil {
+		globalConfig.BPF = bpf{
+			LoadBalancingMode: *config.LoadBalancingMode,
+		}
 	}
 
 	// check if ipv4 native routing cidr is set

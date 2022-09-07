@@ -280,6 +280,9 @@ global:
   # policy map (per endpoint)
     policyMapMax: "16384"
 
+  # Defines the BPF load balancing mode ("snat", "dsr", "hybrid")
+    lbMode: "snat"
+
   # bpf-lb-map-max specifies the maximum number of entries in bpf lb service,
   # backend and affinity maps.
     lbMapMax: "65536"
